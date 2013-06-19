@@ -18,7 +18,7 @@ def post_record(r):
     form=dict(r)
       
     form['auth_key'] = settings.auth_key
-    form['file_data'] = open(file_name)
+    form['file_data'] = open(file_name, 'rb')
   
     opener = urllib2.build_opener(MultipartPostHandler())
     opener.open(settings.url, form)   
