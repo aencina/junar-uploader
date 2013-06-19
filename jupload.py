@@ -1,3 +1,4 @@
+from __future__ import with_statement
 import sys
 import urllib2
 import csv
@@ -19,7 +20,8 @@ def post_record(r):
       
     form['auth_key'] = settings.auth_key
     
-    with open(file_name, 'rb') as file_data:
+    file_data = open(file_name, 'rb')
+    try:
         
         form['file_data'] = file_data
       
@@ -27,12 +29,16 @@ def post_record(r):
         response = opener.open(settings.url, form)
         
         print response.read()
-
-        
+    
+    finally:
+        file_data.close()
 
 if __name__=="__main__":  
-    csvsource=sys.argv[1]
+    csv_name=sys.argv[1]
     
-    with open(csvsource,"rb") as csv:
-        for r in UnicodeDictReader(csv):
+    csv_data = open(csv_name,"rb")
+    try:
+        for r in UnicodeDictReader(csv_data):
             post_record(r)
+    finally:
+        csv_data.close()
