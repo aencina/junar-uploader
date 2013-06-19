@@ -18,13 +18,21 @@ def post_record(r):
     form=dict(r)
       
     form['auth_key'] = settings.auth_key
-    form['file_data'] = open(file_name, 'rb')
-  
-    opener = urllib2.build_opener(MultipartPostHandler())
-    opener.open(settings.url, form)   
+    
+    with open(file_name, 'rb') as file_data:
+        
+        form['file_data'] = file_data
+      
+        opener = urllib2.build_opener(MultipartPostHandler())
+        response = opener.open(settings.url, form)
+        
+        print response.read()
 
+        
 
 if __name__=="__main__":  
     csvsource=sys.argv[1]
-    for r in UnicodeDictReader(open(csvsource,"rb")):
-        post_record(r)
+    
+    with open(csvsource,"rb") as csv:
+        for r in UnicodeDictReader(csv):
+            post_record(r)
