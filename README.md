@@ -16,4 +16,10 @@ https://docs.google.com/a/okfn.org/spreadsheet/ccc?key=0Aq9agjil66PydGFaRERZOVBE
 call jupload.py with the csv file as parameter. Make sure all the files are
 readable on their relative locations to the script.
 
+csv columns must be separated by commas.
+
+csv file must be saved in utf-8 encoding.
+
+juploader prints the title of the dataset beign uploaded and then the response obtained from Junar's API
+
 
