@@ -12,7 +12,7 @@ def UnicodeDictReader(utf8_data, **kwargs):
                     in row.iteritems()])
 
 def post_record(r):
-    print "uploading %s"%r.get('title')
+    print "uploading %s"%r.get('title').encode('utf-8')
     
     file_name=r.pop("file_data")
     
@@ -29,7 +29,8 @@ def post_record(r):
         response = opener.open(settings.url, form)
         
         print response.read()
-    
+    except Exception, e:
+        print e    
     finally:
         file_data.close()
 
