@@ -13,26 +13,36 @@ def UnicodeDictReader(utf8_data, **kwargs):
 
 def post_record(r):
     print "uploading %s"%r.get('title').encode('utf-8')
-    
-    file_name=r.pop("file_data")
-    
+        
     form=dict(r)
       
     form['auth_key'] = settings.auth_key
     
-    file_data = open(file_name, 'rb')
-    try:
+    file_name = r.pop("file_data", None)
+    
+    if file_name is not None:        
         
-        form['file_data'] = file_data
-      
-        opener = urllib2.build_opener(MultipartPostHandler())
-        response = opener.open(settings.url, form)
+        try:            
+            file_data = open(file_name, 'rb')
+            form['file_data'] = file_data    
+          
+            opener = urllib2.build_opener(MultipartPostHandler())
+            response = opener.open(settings.url, form)
+            
+            print response.read()
+        except Exception, e:
+            print e    
+        finally:
+            file_data.close()
+    else:
+        try:                
+            opener = urllib2.build_opener(MultipartPostHandler())
+            response = opener.open(settings.url, form)
+            
+            print response.read()
+        except Exception, e:
+            print e          
         
-        print response.read()
-    except Exception, e:
-        print e    
-    finally:
-        file_data.close()
 
 if __name__=="__main__":  
     csv_name=sys.argv[1]
