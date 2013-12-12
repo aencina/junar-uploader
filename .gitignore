@@ -1,2 +1,7 @@
 settings.py
 *.swp
+*.xls
+*.csv
+*.pyc
+*.log
+.*
