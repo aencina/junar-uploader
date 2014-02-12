@@ -58,22 +58,22 @@ class MultipartPostHandler(urllib2.BaseHandler):
     def http_request(self, request):
         data = request.get_data()
         if data is not None and type(data) != str:
-            v_files = []
-            v_vars = []
+            files = []
+            params = []
             try:
-                 for(key, value) in data.items():
-                     if type(value) == file:
-                         v_files.append((key, value))
-                     else:
-                         v_vars.append((key, value))
+                for(key, value) in data.items():
+                    if type(value) == file:
+                        files.append((key, value))
+                    else:
+                        params.append((key, value))
             except TypeError:
                 systype, value, traceback = sys.exc_info()
                 raise TypeError, "not a valid non-string sequence or mapping object", traceback
 
-            if len(v_files) == 0:
-                data = urllib.urlencode(v_vars, doseq)
+            if len(files) == 0:
+                data = urllib.urlencode(params, doseq)
             else:
-                boundary, data = self.multipart_encode(v_vars, v_files)
+                boundary, data = self.multipart_encode(params, files)
 
                 contenttype = 'multipart/form-data; boundary=%s' % boundary
                 if(request.has_header('Content-Type')
@@ -85,12 +85,12 @@ class MultipartPostHandler(urllib2.BaseHandler):
         
         return request
 
-    def multipart_encode(vars, files, boundary = None, buf = None):
+    def multipart_encode(params, files, boundary = None, buf = None):
         if boundary is None:
             boundary = mimetools.choose_boundary()
         if buf is None:
             buf = StringIO()
-        for(key, value) in vars:
+        for(key, value) in params:
             buf.write('--%s\r\n' % boundary)
             buf.write('Content-Disposition: form-data; name="%s"' % key)
             buf.write('\r\n\r\n' + value.encode('utf-8') + '\r\n')
