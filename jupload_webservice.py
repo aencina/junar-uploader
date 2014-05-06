@@ -21,7 +21,7 @@ def post_record(r):
 
         import pprint
         pp = pprint.PrettyPrinter(indent=4)
-        print "SENDING ..."
+        print "SENDING TO %s ..." % settings.url_webservice
         pp.pprint(form)
 
         opener = urllib2.build_opener(MultipartPostHandler())
