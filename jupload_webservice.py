@@ -18,7 +18,6 @@ def post_record(r):
     form['auth_key'] = settings.auth_key
 
     try:
-        print "Addind data [%s] file for %s" % (file_data.name, file_name)
 
         import pprint
         pp = pprint.PrettyPrinter(indent=4)
@@ -31,8 +30,6 @@ def post_record(r):
         print response.read()
     except Exception, e:
         print e
-    finally:
-        file_data.close()
 
 
 if __name__=="__main__":
