@@ -45,8 +45,8 @@ if __name__=="__main__":
 
 CSV sample
 
-title,description,category,tags,endpoint,impl_type,path_to_data,path_to_headers,token,algorithm,signature
-Webservice Test01 title,Webservice description text,Test,"tag01, tag02",http://api_enpoint.com,14,data,header,token,sign_algoritm,sign_name
+title,description,category,tags,endpoint,impl_type,path_to_data,path_to_headers,token,algorithm,signature,username,password
+Webservice Test01 title,Webservice description text,Test,"tag01, tag02",http://api_enpoint.com,14,data,header,token,sign_algoritm,sign_name,user,pass
 
 impl_type = 14 => REST/JSON
 impl_type = 1  => SOAP/XML
