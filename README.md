@@ -22,4 +22,12 @@ csv file must be saved in utf-8 encoding.
 
 juploader prints the title of the dataset beign uploaded and then the response obtained from Junar's API
 
+---------------------------
 
+juploader for adding webservices
+================================
+
+Now you can add webservices too using jupload_webservice.py
+Works like juploader but uses diferent parameters. You can see them in this CSV file:
+
+https://docs.google.com/spreadsheets/d/1uwSctyt5JMWibZUSChsUrI-hvFh_0oNPNfgkADuhhZM/edit?usp=sharing
