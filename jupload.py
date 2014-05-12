@@ -64,7 +64,7 @@ def post_webservice(r):
 
         import pprint
         pp = pprint.PrettyPrinter(indent=4)
-        print "SENDING TO %s ..." % settings.url_webservice
+        print "SENDING TO %s ..." % settings.url
         pp.pprint(form)
 
         opener = urllib2.build_opener(MultipartPostHandler())
