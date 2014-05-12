@@ -68,7 +68,7 @@ def post_webservice(r):
         pp.pprint(form)
 
         opener = urllib2.build_opener(MultipartPostHandler())
-        response = opener.open(settings.url_webservice, form)
+        response = opener.open(settings.url, form)
         print "Respuesta:"
         print response.read()
     except Exception, e:
