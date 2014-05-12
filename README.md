@@ -24,9 +24,9 @@ Sample call:
 	`python jupload.py info.csv`
 
 Consider the following:
-	* Csv columns must be separated by commas.
-	* Csv file must be saved in utf-8 encoding.
-	* juploader prints the title of the dataset beign uploaded and then the response obtained from Junar's API
+  * Csv columns must be separated by commas.
+  * Csv file must be saved in utf-8 encoding.
+  * juploader prints the title of the dataset beign uploaded and then the response obtained from Junar's API
 
 
 juploader for webservices
@@ -42,4 +42,4 @@ So, defining the fields in the csv file you can add a webservice to your junar a
 You can define more than one webservice in the same csv file. You must use one line for each webservice definition.
 
 Notes:
-	* For the *impl_type* field use **14** for *REST/JSON* and **1** for *SOAP/XML*
+   * For the *impl_type* field use **14** for *REST/JSON* and **1** for *SOAP/XML*
