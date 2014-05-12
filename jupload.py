@@ -12,11 +12,17 @@ def UnicodeDictReader(utf8_data, **kwargs):
                     in row.iteritems()])
 
 def post_record(r):
-    print "uploading %s"%r.get('title').encode('utf-8')
 
-    file_name = r.pop("file_data", None)
     form = dict(r)
+
+    #check if it's a webservice definition
+    if form.get("type", "") == "webservice":
+        return post_webservice(r)
+
+    # we will upload a simple spreadsheet data
     form['auth_key'] = settings.auth_key
+    print "uploading %s"%r.get('title').encode('utf-8')
+    file_name = r.pop("file_data", None)
 
     if file_name is not None:
         try:
@@ -48,6 +54,25 @@ def post_record(r):
         except Exception, e:
             print e
 
+def post_webservice(r):
+    print "uploading %s" % r.get('title').encode('utf-8')
+
+    form = dict(r)
+    form['auth_key'] = settings.auth_key
+
+    try:
+
+        import pprint
+        pp = pprint.PrettyPrinter(indent=4)
+        print "SENDING TO %s ..." % settings.url_webservice
+        pp.pprint(form)
+
+        opener = urllib2.build_opener(MultipartPostHandler())
+        response = opener.open(settings.url_webservice, form)
+
+        print response.read()
+    except Exception, e:
+        print e
 
 if __name__=="__main__":
     csv_name=sys.argv[1]
