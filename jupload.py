@@ -38,7 +38,7 @@ def post_record(r):
 
             opener = urllib2.build_opener(MultipartPostHandler())
             response = opener.open(settings.url, form)
-
+            print "Respuesta:"
             print response.read()
         except Exception, e:
             print e
@@ -69,7 +69,7 @@ def post_webservice(r):
 
         opener = urllib2.build_opener(MultipartPostHandler())
         response = opener.open(settings.url_webservice, form)
-
+        print "Respuesta:"
         print response.read()
     except Exception, e:
         print e
