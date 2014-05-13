@@ -43,7 +43,8 @@ You can define more than one webservice in the same csv file. You must use one l
 
 Notes:
   * For the *impl_type* field use **14** for *REST/JSON* and **1** for *SOAP/XML*
-  * Include the *status* column for puslish (3) or no (1=default) the final view
+  * If you want to create a view use *create_datastream* = 1
+  * Include the *status* column for puslish (3) or no (1=default) the final view. Valid for the view.
   * Use field *columns* for size of the final view.
   * If you want to define more about fields you can use *data_source* field (*columns* will be ignored).
   * The *select_statement* field is also available.
