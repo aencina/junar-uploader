@@ -42,4 +42,5 @@ So, defining the fields in the csv file you can add a webservice to your junar a
 You can define more than one webservice in the same csv file. You must use one line for each webservice definition.
 
 Notes:
-   * For the *impl_type* field use **14** for *REST/JSON* and **1** for *SOAP/XML*
+  * For the *impl_type* field use **14** for *REST/JSON* and **1** for *SOAP/XML*
+  * Include the *status* column for puslish (3) or no (1=default)
