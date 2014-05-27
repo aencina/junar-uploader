@@ -23,7 +23,7 @@ Mandatory. Categories are created from the Admin section of the account Workspac
   * notes: Additional notes to provide context to the data view. This field supports basic HTML text format and up to 1000 characters. Optional.  
   * table_id: The location of the table on the document, starting from zero. If the document is an XLS or any other multi sheet document, the id will increase by one for each sheet on the document (i.e. the first sheet will be table0, the second sheet will be table1, and so on). Mandatory.  
   * auth_key : Your private API auth key, provided by Junar. Mandatory. 
-  * meta_data: If the resource has an additional metadata field it should be entered here as a json element. Optional.  
+  * meta_data: If the resource has an additional metadata field it should be entered here as an encoded json element. Optional.  
   * file_data: The name of the file to be used as dataset. The file should be on the same directory as the curl executable in order to collect it, and cointain a @ before the file name with its extension type (i.e. @sample-dataset.csv). Mandatory if no source is provided.  
   * source: The URL to the file to be used as dataset. Mandatory if no file_data is provided. 
   * clone: If set to True, it allows to inherit customizations of a data view (headers, filters, parameters, column formatting) to the new revision. Must go accompanied by the guid parameter to indicate the data view that is being cloned. Optional.  
@@ -76,7 +76,7 @@ Upload spreadsheet data
 
 You'll need a index csv file with a spreadsheet list.  
 
-Sample for [a spreadsheet whit data here](https://docs.google.com/a/okfn.org/spreadsheet/ccc?key=0Aq9agjil66PydGFaRERZOVBEam5KMUFIM1dKVklrRlE#gid=0)  
+Sample for [a spreadsheet with data here](https://docs.google.com/a/okfn.org/spreadsheet/ccc?key=0Aq9agjil66PydGFaRERZOVBEam5KMUFIM1dKVklrRlE#gid=0)  
 
 **Fields**  
 
