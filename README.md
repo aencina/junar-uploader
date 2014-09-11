@@ -27,7 +27,8 @@ Mandatory. Categories are created from the Admin section of the account Workspac
   * file_data: The name of the file to be used as dataset. The file should be on the same directory as the curl executable in order to collect it, and cointain a @ before the file name with its extension type (i.e. @sample-dataset.csv). Mandatory if no source is provided.  
   * source: The URL to the file to be used as dataset. Mandatory if no file_data is provided. 
   * clone: If set to True, it allows to inherit customizations of a data view (headers, filters, parameters, column formatting) to the new revision. Must go accompanied by the guid parameter to indicate the data view that is being cloned. Optional.  
-  
+  * header_row: Defines which row to be selected as the header row of the data view. Rows must be entered as row0 (for the first row), row1 (for the second row) and so on. Only one header row accepted per data view.  
+   
 **Example**  
 I want to create a data view using a file from my computer called mydataset.csv. Since it's a csv file it only contains one sheet, so table0 is the value to input on the table_id parameter. The title, description, tags and notes are defined and no additional meta_data field is used. The publishing API key has been requested and delivered, and added to the corresponding field and the category to be used is already defined in the account. The curl request should look like this:  
   
@@ -88,7 +89,7 @@ Sample for [a spreadsheet with data here](https://docs.google.com/a/okfn.org/spr
  * file_data: Path to readable spreadsheet file
  * table_id: Use *table0* for the first sheet (or single *csv* file)
  * guid: Optional. use it with *clone* for update existing data.
- * clone: Optional. *True* for edit a pre-existing data. If you don't provide the guid we detect it by dataset filename.
+ * clone: Optional. *True* for edit a pre-existing data. If you don't provide the guid we detect it by dataset filename.  
 
 Call jupload.py with the csv file as parameter. Make sure all the files are readable on their relative locations to the script.
 
