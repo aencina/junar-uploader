@@ -41,7 +41,7 @@ def post_record(r):
             print "Respuesta:"
             print response.read()
         except Exception, e:
-            print e
+            print "Error %s " % str(e)
         finally:
             file_data.close()
     else:
@@ -72,8 +72,8 @@ def post_webservice(r):
         print "Respuesta:"
         print response.read()
     except Exception, e:
-        print e
-
+        print "Error %s " % str(e)
+        
 if __name__=="__main__":
     csv_name=sys.argv[1]
 
