@@ -4,6 +4,8 @@ import urllib2
 import csv
 import settings
 from MultipartPostHandler import *
+import requests
+
 
 def UnicodeDictReader(utf8_data, **kwargs):
     csv_reader = csv.DictReader(utf8_data, **kwargs)
@@ -66,11 +68,10 @@ def post_webservice(r):
         pp = pprint.PrettyPrinter(indent=4)
         print "SENDING WEBSERVICE TO %s ..." % settings.url
         pp.pprint(form)
-
-        opener = urllib2.build_opener(MultipartPostHandler())
-        response = opener.open(settings.url, form)
+        response = requests.post(settings.url, data=form)
+		
         print "Respuesta:"
-        print response.read()
+        print response.text
     except Exception, e:
         print "Error %s " % str(e)
         
