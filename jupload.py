@@ -5,6 +5,7 @@ import csv
 import settings
 from MultipartPostHandler import *
 import requests
+import pprint
 
 
 def UnicodeDictReader(utf8_data, **kwargs):
@@ -23,7 +24,7 @@ def post_record(r):
 
     # we will upload a simple spreadsheet data
     form['auth_key'] = settings.auth_key
-    print "uploading %s"%r.get('title').encode('utf-8')
+    print "uploading %s" % r.get('title').encode('utf-8')
     file_name = r.pop("file_data", None)
 
     if file_name is not None:
@@ -33,7 +34,7 @@ def post_record(r):
 
             form['file_data'] = file_data
             # test form['is_file'] = "1"
-            import pprint
+            
             pp = pprint.PrettyPrinter(indent=4)
             print "SENDING ..."
             pp.pprint(form)
@@ -47,14 +48,18 @@ def post_record(r):
         finally:
             file_data.close()
     else:
-        try:
-            print "file %s will be read from the web" % form["source"]
-            opener = urllib2.build_opener(MultipartPostHandler())
-            response = opener.open(settings.url, form)
 
-            print response.read()
+        try:
+            pp = pprint.PrettyPrinter(indent=4)
+            print "SENDING WEB SOURCE TO... %s" % settings.url
+            pp.pprint(form)
+            response = requests.post(settings.url, data=form)
+    		
+            print "Respuesta:"
+            print response.text
         except Exception, e:
-            print e
+            print "Error Web Source %s " % str(e)
+
 
 def post_webservice(r):
     print "uploading %s" % r.get('title').encode('utf-8')
@@ -63,8 +68,6 @@ def post_webservice(r):
     form['auth_key'] = settings.auth_key
 
     try:
-
-        import pprint
         pp = pprint.PrettyPrinter(indent=4)
         print "SENDING WEBSERVICE TO %s ..." % settings.url
         pp.pprint(form)
